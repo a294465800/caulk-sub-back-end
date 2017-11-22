@@ -92,17 +92,7 @@ body > .el-container {
           <i class="el-icon-tickets"></i>
           <span slot="title">预约列表</span>
         </el-menu-item>
-        <el-submenu index="/images">
-          <template slot="title">
-            <i class="el-icon-picture"></i>
-            <span>图片管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="/index/images">首页轮播</el-menu-item>
-            <el-menu-item index="/company/images">公司轮播</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-menu-item index="/company/list">
+        <el-menu-item index="/company">
           <i class="el-icon-info"></i>
           <span slot="title">公司简介</span>
         </el-menu-item>

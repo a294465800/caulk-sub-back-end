@@ -96,7 +96,7 @@ export default {
     //   this.count = res.data.count;
     // });
     setTimeout(() => {
-      // this.loading = false;
+      this.loading = false;
     }, 300);
   },
 

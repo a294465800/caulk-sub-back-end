@@ -9,6 +9,7 @@ import IndexContent from '@/components/index/indexContent'
 import ReservationList from '@/components/reservation/reservationList'
 import MasterList from '@/components/master/masterList'
 import MasterApplyList from '@/components/master/masterApplyList'
+import Company from '@/components/company/company'
 
 Vue.use(Router)
 Vue.prototype.$common = Common
@@ -37,6 +38,10 @@ export default new Router({
       path: 'master/apply/list',
       name: 'MasterApplyList',
       component: MasterApplyList
+    }, {
+      path: 'company',
+      name: 'Company',
+      component: Company
     }]
   }]
 })
