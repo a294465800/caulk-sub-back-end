@@ -6,6 +6,21 @@
 .dialog-img {
   width: 100%;
 }
+
+.bm-view {
+  width: 100%;
+  height: 400px;
+}
+
+.location-search-input {
+  margin-bottom: 20px;
+}
+
+.location-search-input label,
+.location-search-input .location-search-content > div {
+  flex: 1;
+  margin: 0 10px;
+}
 </style>
 
 <template>
@@ -45,20 +60,46 @@
           </el-form-item>
             <el-button type="success" style="width: 95%;display:block;margin: 20px auto;">更新信息</el-button>
           </el-form-item>
+          <el-form-item label="公司地址">
+            <div class="location-search-input">
+              <div class="location-search-title flex-row">
+                <label>关键词：</label>
+                <label>地区：</label>
+              </div>
+              <div class="location-search-content flex-row">
+                <el-input v-model="keyword" placeholder="输入关键词"></el-input>
+                <el-input v-model="location" placeholder="输入地区"></el-input>
+              </div>
+            </div>
+            <baidu-map class="bm-view" ak="k1r99uanDrpyWo8Pr9aXK2BLfUdG71uY" :center="center" :zoom="zoom" @ready="mapReady" :scroll-wheel-zoom="true">
+              <bm-local-search :keyword="keyword" :auto-viewport="true" :location="location"></bm-local-search>
+            </baidu-map>
+          </el-form-item>
         </el-form>
       </div>
     </div>
-    <el-dialog :visible.sync="dialogVisible" size="tiny" custom-class="dialog">
+    <el-dialog :visible.sync="dialogVisible" custom-class="dialog">
       <img class="dialog-img" :src="preImg" alt="图片">
     </el-dialog>
   </section>
 </template>
 
 <script>
+import { BaiduMap, BmLocalSearch } from "vue-baidu-map";
 export default {
+  components: {
+    BaiduMap,
+    BmLocalSearch
+  },
   data() {
     return {
       loading: true,
+
+      //地图相关
+      center: { lng: 0, lat: 0 },
+      zoom: 3,
+      keyword: "百度",
+      location: "北京",
 
       preImg: "",
       dialogVisible: false,
@@ -93,6 +134,16 @@ export default {
   },
 
   methods: {
+    //百度地图初始化
+    mapReady({ BMap, map }) {
+      this.center.lng = 116.404;
+      this.center.lat = 39.915;
+      this.zoom = 15;
+    },
+
+    searchcomplete(results) {
+      console.log(results);
+    },
     //预览图片按钮
     handlePictureCardPreview(file) {
       console.log(file);
