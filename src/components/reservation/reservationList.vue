@@ -1,7 +1,5 @@
 <style scoped>
-.table-list {
-  flex: 1;
-}
+
 </style>
 
 <template>
@@ -98,7 +96,7 @@ export default {
     //   this.count = res.data.count;
     // });
     setTimeout(() => {
-      this.loading = false;
+      // this.loading = false;
     }, 300);
   },
 
