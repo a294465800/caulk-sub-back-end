@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+html {
+  font-size: 12px;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+}
+
+
+/* flex 通用 */
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 通用 */
+
+.content-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.operation {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.pages {
+  width: 100%;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.warning {
+  color: #ffd04b;
+}
+
+.success {
+  color: #1aad19;
+}
+
+.normal {
+  color: #666;
+}
+
+.error {
+  color: #fa5555;
+}
+
+
+/* element-ui */
+
+.loading-status {
+  font-size: 30px;
+}
