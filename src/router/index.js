@@ -26,19 +26,21 @@ export default new Router({
       path: '',
       name: 'Index',
       component: IndexContent
-    }, {
-      path: 'reservation/list',
-      name: 'ReservationList',
-      component: ReservationList
-    }, {
-      path: 'master/list',
-      name: 'MasterList',
-      component: MasterList
-    }, {
-      path: 'master/apply/list',
-      name: 'MasterApplyList',
-      component: MasterApplyList
-    }, {
+    }, 
+    // {
+    //   path: 'reservation/list',
+    //   name: 'ReservationList',
+    //   component: ReservationList
+    // }, {
+    //   path: 'master/list',
+    //   name: 'MasterList',
+    //   component: MasterList
+    // }, {
+    //   path: 'master/apply/list',
+    //   name: 'MasterApplyList',
+    //   component: MasterApplyList
+    // },
+     {
       path: 'company',
       name: 'Company',
       component: Company

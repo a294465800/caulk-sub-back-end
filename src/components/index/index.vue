@@ -88,15 +88,15 @@ body > .el-container {
         <div class="collapse" @click="collapseNav">
           <i :class="{'active': isCollapse}" class="el-icon-caret-left"></i>
         </div>
-        <el-menu-item index="/reservation/list">
+        <!-- <el-menu-item index="/reservation/list">
           <i class="el-icon-tickets"></i>
           <span slot="title">预约列表</span>
-        </el-menu-item>
+        </el-menu-item> -->
         <el-menu-item index="/company">
           <i class="el-icon-info"></i>
           <span slot="title">公司简介</span>
         </el-menu-item>
-        <el-submenu index="/master">
+        <!-- <el-submenu index="/master">
           <template slot="title">
             <i class="el-icon-phone-outline"></i>
             <span>师傅管理</span>
@@ -105,7 +105,7 @@ body > .el-container {
             <el-menu-item index="/master/list">师傅列表</el-menu-item>
             <el-menu-item index="/master/apply/list">申请列表</el-menu-item>
           </el-menu-item-group>
-        </el-submenu>
+        </el-submenu> -->
       </el-menu>
     </el-aside>
     <!-- 左侧导航 -->

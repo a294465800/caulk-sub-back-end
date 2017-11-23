@@ -6,9 +6,9 @@ import {
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // const host = 'http://119.23.255.177:8090/'
-// const host = 'http://192.168.3.22:9000/'
+const host = 'http://192.168.3.22:9000/'
 // const host = 'http://xcx.gdmeika.com/'
-const host = 'http://192.168.3.44:3000/'
+// const host = 'http://192.168.3.44:3000/'
 
 /*
   配置 axios
@@ -49,7 +49,42 @@ export default {
   postLogin(data, cb) {
     axios.post(`${host}login`, data)
       .then(res => {
-        if ('SUCCESS' === res.data.code) {
+        if ('200' === res.data.code) {
+          typeof cb === 'function' && cb(res)
+        } else {
+          this.APIError(res)
+        }
+      }).catch(error => {
+        this.APIError(error.response)
+      })
+  },
+
+  /**
+   * 获取加盟商信息
+   * @param {Function} cb 回调
+   */
+  getInfo(cb) {
+    axios.get(`${host}info`)
+      .then(res => {
+        if ('200' === res.data.code) {
+          typeof cb === 'function' && cb(res)
+        } else {
+          this.APIError(res)
+        }
+      }).catch(error => {
+        this.APIError(error.response)
+      })
+  },
+
+  /**
+   * 提交加盟商信息
+   * @param {Object} data {}
+   * @param {Function} cb 回调
+   */
+  postInfo(data, cb) {
+    axios.post(`${host}info`, data)
+      .then(res => {
+        if ('200' === res.data.code) {
           typeof cb === 'function' && cb(res)
         } else {
           this.APIError(res)
