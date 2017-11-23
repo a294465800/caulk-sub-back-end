@@ -69,20 +69,20 @@ export default {
             username: this.loginInfo.username,
             password: this.loginInfo.password
           };
-          // this.$api.login(login, res => {
-          //   sessionStorage.username = this.loginInfo.username;
-          //   this.$message({
-          //     type: "success",
-          //     message: "登录成功"
-          //   });
-          //   this.$router.push("/");
-          // });
-          sessionStorage.username = this.loginInfo.username;
-          this.$message({
-            type: "success",
-            message: "登录成功"
+          this.$api.postLogin(login, res => {
+            sessionStorage.username = this.loginInfo.username;
+            this.$message({
+              type: "success",
+              message: "登录成功"
+            });
+            this.$router.push("/");
           });
-          this.$router.push("/");
+          // sessionStorage.username = this.loginInfo.username;
+          // this.$message({
+          //   type: "success",
+          //   message: "登录成功"
+          // });
+          // this.$router.push("/");
         } else {
           return false;
         }

@@ -48,19 +48,25 @@
             <el-input type="textarea" :rows="5" v-model="companyForm.desc" placeholder="输入公司描述"></el-input>
           </el-form-item>
           <el-form-item label="轮播图">
-            <el-upload class="ad-imgs" :file-list="fileList" action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+            <el-upload class="ad-imgs" :file-list="fileList" name="image" accept="image/jpeg,image/jpg,image/png,image/gif" :action="host" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
               <i class="el-icon-plus"></i>
             </el-upload>
           </el-form-item>
           <el-form-item label="详情图">
-            <el-upload class="info-imgs" action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+            <el-upload class="info-imgs" :action="host" name="image" accept="image/jpeg,image/jpg,image/png,image/gif" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
               <i class="el-icon-plus"></i>
             </el-upload>
+          </el-form-item>
+          <el-form-item label="公司地址" prop="address">
+            <el-input v-model="companyForm.address" placeholder="输入详细的公司地址"></el-input>
+          </el-form-item>
+          <el-form-item label="公司坐标" prop="location">
+            <el-input v-model="companyForm.location" placeholder="点击地图获取公司坐标"></el-input>
           </el-form-item>
           </el-form-item>
             <el-button type="success" style="width: 95%;display:block;margin: 20px auto;">更新信息</el-button>
           </el-form-item>
-          <el-form-item label="公司地址">
+          <el-form-item label="获取坐标">
             <div class="location-search-input">
               <div class="location-search-title flex-row">
                 <label>关键词：</label>
@@ -71,7 +77,7 @@
                 <el-input v-model="location" placeholder="输入地区"></el-input>
               </div>
             </div>
-            <baidu-map class="bm-view" ak="k1r99uanDrpyWo8Pr9aXK2BLfUdG71uY" :center="center" :zoom="zoom" @ready="mapReady" :scroll-wheel-zoom="true">
+            <baidu-map title="点击地图获取坐标" class="bm-view" ak="k1r99uanDrpyWo8Pr9aXK2BLfUdG71uY"  @click="getPosition" :center="center" :zoom="zoom" @ready="mapReady" :scroll-wheel-zoom="true">
               <bm-local-search :keyword="keyword" :auto-viewport="true" :location="location"></bm-local-search>
             </baidu-map>
           </el-form-item>
@@ -94,6 +100,8 @@ export default {
   data() {
     return {
       loading: true,
+
+      host: this.$api.host + "upload",
 
       //地图相关
       center: { lng: 0, lat: 0 },
@@ -122,7 +130,9 @@ export default {
       companyForm: {
         name: "",
         phone: "",
-        desc: ""
+        desc: "",
+        address: "",
+        location: ""
       }
     };
   },
@@ -134,6 +144,11 @@ export default {
   },
 
   methods: {
+    //获取当前坐标
+    getPosition(event) {
+      const point = event.point
+      this.companyForm.location = `${point.lng},${point.lat}`;
+    },
     //百度地图初始化
     mapReady({ BMap, map }) {
       this.center.lng = 116.404;
